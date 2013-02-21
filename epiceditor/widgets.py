@@ -10,9 +10,15 @@ from django.utils.safestring import mark_safe
 class EpicEditorWidget(forms.Textarea):
     class Media:
         css = {
-            'all': ('epiceditor/themes/base/epiceditor.css', 'epiceditor/themes/themes/preview/preview-dark.css', 'epiceditor/themes/preview/preview-dark.css')
+            'screen': (
+                (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/base/epiceditor.css',
+                (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/themes/preview/preview-dark.css',
+                (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/preview/preview-dark.css',
+            )
         }
-        js = ('%s/epiceditor/js/epiceditor.min.js' % settings.STATIC_URL,)
+        js = (
+            (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/js/epiceditor.min.js',
+        )
 
     def render(self, name, value, attrs=None):
         if value is None:
