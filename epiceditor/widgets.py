@@ -33,9 +33,6 @@ class EpicEditorWidget(forms.Textarea):
                   var opts = {
                       container: '%(id)sepiceditor',
                       clientSideStorage: false,
-                      //file: { 
-                      //  defaultContent: "%(body)s" 
-                      //},
                       useNativeFullsreen: true,
                       parser: marked,
                       focusOnLoad: false,
