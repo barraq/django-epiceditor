@@ -33,6 +33,7 @@ class EpicEditorWidget(forms.Textarea):
                   $(document).ready(function() {
                     var opts = {
                         container: '%(id)sepiceditor',
+                        basePath: '%(basePath)s'
                         clientSideStorage: false,
                         useNativeFullsreen: true,
                         parser: marked,
@@ -60,7 +61,7 @@ class EpicEditorWidget(forms.Textarea):
                 })(django.jQuery);
             </script>
             """ % {
-                'basePath': settings.STATIC_URL,
+                'basePath': (settings.STATIC_URL or settings.MEDIA_URL)+'epiceditor',
                 'attrs': flatatt(final_attrs),
                 'body': conditional_escape(force_unicode(value)),
                 'id': attrs['id'],
