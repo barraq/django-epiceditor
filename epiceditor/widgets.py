@@ -34,9 +34,6 @@ class EpicEditorWidget(forms.Textarea):
                     var opts = {
                         container: '%(id)sepiceditor',
                         basePath: '%(basePath)s',
-                        file:{
-                          defaultContent: "%(body)s"
-                        },
                         clientSideStorage: false,
                         useNativeFullsreen: true,
                         parser: marked,
@@ -52,7 +49,8 @@ class EpicEditorWidget(forms.Textarea):
                     // be sure to populate the textarea
                     $textarea = $('#%(id)s');
                     editor.on('load', function (file) {
-                      $textarea.val(file.content);
+                      //$textarea.val(file.content);
+                      file.content = $textarea.val();
                     });
                     editor.on('update', function (file) {
                       $textarea.val(file.content);
