@@ -57,7 +57,7 @@ class EpicEditorWidget(forms.Textarea):
                     // Everything is all setup, so load!
                     editor.load();
                   });
-                })();
+                })(django.jQuery);
             </script>
             """ % {
                 'basePath': settings.STATIC_URL,
