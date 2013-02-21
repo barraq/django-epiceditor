@@ -1,0 +1,3 @@
+include *.txt
+include *.md
+recursive-include epiceditor/static/epiceditor *.js *.png *.txt *.html *.css
