@@ -30,33 +30,34 @@ class EpicEditorWidget(forms.Textarea):
 
             <script type="text/javascript">
                 (function () {
-                    $(document).ready(function() {
-                        var opts = {
-                            container: '%(id)sepiceditor',
-                            clientSideStorage: false,
-                            useNativeFullsreen: true,
-                            parser: marked,
-                            focusOnLoad: false,
-                            shortcut: {
-                                modifier: 18,
-                                fullscreen: 70,
-                                preview: 80
-                            }
-                        }
-                        var editor = new EpicEditor(opts);
+                  var opts = {
+                      container: '%(id)sepiceditor',
+                      clientSideStorage: false,
+                      //file: { 
+                      //  defaultContent: "%(body)s" 
+                      //},
+                      useNativeFullsreen: true,
+                      parser: marked,
+                      focusOnLoad: false,
+                      shortcut: {
+                          modifier: 18,
+                          fullscreen: 70,
+                          preview: 80
+                      }
+                  }
+                  var editor = new EpicEditor(opts);
 
-                        // be sure to populate the textarea
-                        $textarea = $('#%(id)s');
-                        editor.on('load', function (file) {
-                          $textarea.val(file.content);
-                        });
-                        editor.on('update', function (file) {
-                          $textarea.val(file.content);
-                        });
+                  // be sure to populate the textarea
+                  $textarea = $('#%(id)s');
+                  editor.on('load', function (file) {
+                    $textarea.val(file.content);
+                  });
+                  editor.on('update', function (file) {
+                    $textarea.val(file.content);
+                  });
 
-                        // Everything is all setup, so load!
-                        editor.load();
-                    });
+                  // Everything is all setup, so load!
+                  editor.load();
                 })();
             </script>
             """ % {
