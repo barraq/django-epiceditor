@@ -12,7 +12,7 @@ def get_submodules_and_fix_paths():
         check_call(['git', 'reset', '--hard'])
         check_call(['git', 'submodule', 'init'])
         check_call(['git', 'submodule', 'update'])
-        # Move contents of pagedown and remove .git
+        # Move contents of epiceditor and remove .git
         dst = "epiceditor/static/epiceditor/"
         src = "epiceditor/static/epiceditor/epiceditor/"
         copy_tree(src, dst)
@@ -31,7 +31,7 @@ class develop_with_submodules(develop):
 
 setup(
   name = "django-epiceditor",
-  version = "0.2.0",
+  version = "0.2.1",
   author = "Remi Barraquand",
   author_email = "dev@remibarraquand.com",
   url = "https://github.com/barraq/django-epiceditor",
