@@ -87,6 +87,6 @@ class EpicEditorWidget(forms.Textarea):
         )
 
 
-class AdminEpicEditorWidget(admin_widgets.AdminTextareaWidget, EpicEditorWidget):
+class AdminEpicEditorWidget(EpicEditorWidget, admin_widgets.AdminTextareaWidget):
     def __init__(self, attrs=None, themes=None):
         super(AdminEpicEditorWidget, self).__init__(attrs, themes)
