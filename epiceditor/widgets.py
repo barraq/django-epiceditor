@@ -35,7 +35,7 @@ class EpicEditorWidget(forms.Textarea):
                         container: '%(id)sepiceditor',
                         basePath: '%(basePath)s',
                         file:{
-                          defaultContent: "%(defaultContent)s";
+                          defaultContent: "%(defaultContent)s",
                         },
                         clientSideStorage: false,
                         useNativeFullsreen: true,
