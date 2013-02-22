@@ -89,4 +89,4 @@ class EpicEditorWidget(forms.Textarea):
 
 class AdminEpicEditorWidget(admin_widgets.AdminTextareaWidget, EpicEditorWidget):
     def __init__(self, attrs=None, themes=None):
-        super(EpicEditorWidget, self).__init__(attrs, themes)
+        super(AdminEpicEditorWidget, self).__init__(attrs, themes)
