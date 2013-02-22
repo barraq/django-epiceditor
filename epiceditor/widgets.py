@@ -20,7 +20,7 @@ class EpicEditorWidget(forms.Textarea):
         final_themes = EPICEDITOR_DEFAULT_THEMES
         if themes is not None:
             final_themes.update(themes)
-        self.final_themes = dict([(k,'/themes/%s/%s' % (k,v)) for k,v in final_themes.items()])
+        self.themes = dict([(k,'/themes/%s/%s' % (k,v)) for k,v in final_themes.items()])
         super(EpicEditorWidget, self).__init__(attrs)
 
     def render(self, name, value, attrs=None):
