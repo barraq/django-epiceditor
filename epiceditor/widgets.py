@@ -55,8 +55,10 @@ class EpicEditorWidget(forms.Textarea):
                     }
                     var editor = new EpicEditor(opts);
 
-                    // be sure to populate the textarea
+                    // get textarea and hide it
                     $textarea = $('#%(id)s');
+                    $textarea.hide();
+                    // then be sure to populate the textarea
                     editor.on('update', function (file) {
                       $textarea.val(file.content);
                     });
