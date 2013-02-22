@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.admin import widgets as admin_widgets
 from django.forms.widgets import flatatt
-from django.utils.html import conditional_escape
+from django.utils.html import conditional_escape, escapejs
 from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
 
@@ -34,6 +34,9 @@ class EpicEditorWidget(forms.Textarea):
                     var opts = {
                         container: '%(id)sepiceditor',
                         basePath: '%(basePath)s',
+                        file:{
+                          defaultContent: "%(defaultContent)s";
+                        },
                         clientSideStorage: false,
                         useNativeFullsreen: true,
                         parser: marked,
@@ -48,10 +51,9 @@ class EpicEditorWidget(forms.Textarea):
 
                     // be sure to populate the textarea
                     $textarea = $('#%(id)s');
-                    editor.on('load', function (file) {
-                      //$textarea.val(file.content);
-                      file.content = $textarea.val();
-                    });
+                    //editor.on('load', function (file) {
+                    //  $textarea.val(file.content);
+                    //});
                     editor.on('update', function (file) {
                       $textarea.val(file.content);
                     });
@@ -64,6 +66,7 @@ class EpicEditorWidget(forms.Textarea):
             """ % {
                 'basePath': (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor',
                 'attrs': flatatt(final_attrs),
+                'defaultContent': escapejs(force_unicode(value)),
                 'body': conditional_escape(force_unicode(value)),
                 'id': attrs['id'],
             }
