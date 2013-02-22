@@ -8,19 +8,11 @@ from django.utils.safestring import mark_safe
 
 
 class EpicEditorWidget(forms.Textarea):
-    class Media:
-        """
-        css = {
-            'screen': (
-                (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/base/epiceditor.css',
-                (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/themes/preview/preview-dark.css',
-                (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/preview/preview-dark.css',
-            )
-        }
-        """
-        js = (
-            (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/js/epiceditor.min.js',
-        )
+    def __init__(self, theme_base='epiceditor.css', theme_preview='preview-dark.css', theme_editor='epic-dark.css', attrs=None):
+        self.theme_base = '/themes/base/' + theme_base
+        self.theme_preview = '/themes/preview/' + theme_preview
+        self.theme_editor = '/themes/editor/' + theme_editor
+        super(EpicEditorWidget, self).__init__(attrs)
 
     def render(self, name, value, attrs=None):
         if value is None:
@@ -36,9 +28,9 @@ class EpicEditorWidget(forms.Textarea):
                         container: '%(id)sepiceditor',
                         basePath: '%(basePath)s',
                         theme: {
-                          base:'/themes/base/epiceditor.css',
-                          preview:'/themes/preview/preview-dark.css',
-                          editor:'/themes/editor/epic-dark.css'
+                          base:'%(theme_base)s',
+                          preview:'%(theme_preview)s',
+                          editor:'%(theme_editor)s'
                         },
                         file:{
                           defaultContent: "%(defaultContent)s",
@@ -71,13 +63,20 @@ class EpicEditorWidget(forms.Textarea):
             """ % {
                 'basePath': (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor',
                 'defaultContent': escapejs(force_unicode(value)),
+                'theme_base': self.theme_base,
+                'theme_preview': self.theme_preview,
+                'theme_editor': self.theme_editor,
                 'attrs': flatatt(final_attrs),
                 'body': conditional_escape(force_unicode(value)),
                 'id': attrs['id'],
             }
         return mark_safe(html)
 
+    class Media:
+        js = (
+            (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/js/epiceditor.min.js',
+        )
+
 
 class AdminEpicEditorWidget(admin_widgets.AdminTextareaWidget, EpicEditorWidget):
-    class Media:
-        pass
+    pass
