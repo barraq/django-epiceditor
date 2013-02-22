@@ -10,8 +10,8 @@ from django.utils.safestring import mark_safe
 
 EPICEDITOR_DEFAULT_THEMES = {
     'base': 'epiceditor.css',
-    'preview'='preview-dark.css', 
-    'editor'='epic-dark.css'}
+    'preview': 'preview-dark.css', 
+    'editor': 'epic-dark.css'}
 
 
 
