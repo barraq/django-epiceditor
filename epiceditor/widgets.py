@@ -8,8 +8,8 @@ from django.utils.safestring import mark_safe
 
 
 class EpicEditorWidget(forms.Textarea):
-    """
     class Media:
+        """
         css = {
             'screen': (
                 (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/base/epiceditor.css',
@@ -17,11 +17,11 @@ class EpicEditorWidget(forms.Textarea):
                 (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/themes/preview/preview-dark.css',
             )
         }
+        """
         js = (
             (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor/js/epiceditor.min.js',
         )
-    """
-    
+
     def render(self, name, value, attrs=None):
         if value is None:
             value = ''
