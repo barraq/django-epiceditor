@@ -7,11 +7,20 @@ from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
 
 
+
+EPICEDITOR_DEFAULT_THEMES = {
+    'base': 'epiceditor.css',
+    'preview'='preview-dark.css', 
+    'editor'='epic-dark.css'}
+
+
+
 class EpicEditorWidget(forms.Textarea):
-    def __init__(self, theme_base='epiceditor.css', theme_preview='preview-dark.css', theme_editor='epic-dark.css', attrs=None):
-        self.theme_base = '/themes/base/' + theme_base
-        self.theme_preview = '/themes/preview/' + theme_preview
-        self.theme_editor = '/themes/editor/' + theme_editor
+    def __init__(self, attrs=None, themes=None):
+        final_themes = EPICEDITOR_DEFAULT_THEMES
+        if themes is not None:
+            final_themes.update(themes)
+        self.final_themes = dict([(k,'/themes/%s/%s' % (k,v)) for k,v in final_themes.items()])
         super(EpicEditorWidget, self).__init__(attrs)
 
     def render(self, name, value, attrs=None):
@@ -63,9 +72,9 @@ class EpicEditorWidget(forms.Textarea):
             """ % {
                 'basePath': (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor',
                 'defaultContent': escapejs(force_unicode(value)),
-                'theme_base': self.theme_base,
-                'theme_preview': self.theme_preview,
-                'theme_editor': self.theme_editor,
+                'theme_base': self.themes['base'],
+                'theme_preview': self.themes['preview'],
+                'theme_editor': self.themes['editor'],
                 'attrs': flatatt(final_attrs),
                 'body': conditional_escape(force_unicode(value)),
                 'id': attrs['id'],
@@ -79,5 +88,5 @@ class EpicEditorWidget(forms.Textarea):
 
 
 class AdminEpicEditorWidget(admin_widgets.AdminTextareaWidget, EpicEditorWidget):
-    def __init__(self, attrs=None, *args, **kwargs):
-        super(EpicEditorWidget, self).__init__(attrs, *args, **kwargs)
+    def __init__(self, attrs=None, themes=None):
+        super(EpicEditorWidget, self).__init__(attrs, themes)
