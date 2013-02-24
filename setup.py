@@ -8,10 +8,16 @@ from setuptools.command.develop import develop
 
 def get_submodules_and_fix_paths():
     if path.exists('.git'):
+        # Get HEAD version
         check_call(['rm', '-rf', 'epiceditor/static/epiceditor'])
         check_call(['git', 'reset', '--hard'])
+        # Get submodules
         check_call(['git', 'submodule', 'init'])
         check_call(['git', 'submodule', 'update'])
+        # Reset EpicEditor to tag 0.2.0
+        check_call(['cd', 'epiceditor/static/epiceditor'])
+        check_call(['git', 'reset', '--hard', '0.2.0'])
+        check_call(['cd', '../../../'])
         # Move contents of epiceditor and remove .git
         dst = "epiceditor/static/epiceditor/"
         src = "epiceditor/static/epiceditor/epiceditor/"
