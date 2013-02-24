@@ -35,7 +35,7 @@ class develop_with_submodules(develop):
 
 setup(
   name = "django-epiceditor",
-  version = "0.2.1",
+  version = "0.2.1.1",
   author = "Remi Barraquand",
   author_email = "dev@remibarraquand.com",
   url = "https://github.com/barraq/django-epiceditor",
