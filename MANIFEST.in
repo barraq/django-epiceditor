@@ -1,3 +1,4 @@
-include *.txt
-include *.md
-recursive-include epiceditor/static/epiceditor *.js *.png *.txt *.html *.css
+include CHANGES LICENSE
+include *.png
+include *.rst
+recursive-include epiceditor/static/epiceditor *.js *.png *.css

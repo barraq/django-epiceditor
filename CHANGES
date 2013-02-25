@@ -1,2 +1,4 @@
-v0.2.0, 21/02/2013 -- Initial release.
-v0.2.1, 22/02/2013 -- Adding themes support and bugs fix
+v0.2.0,     21/02/2013 -- Initial release.
+v0.2.1,     22/02/2013 -- Adding themes support and bugs fix
+v0.2.1.1    24/02/2013 -- Using EpicEditor v0.2.0
+v0.2.1.2    25/02/2013 -- Fixing issues with MANIFEST
