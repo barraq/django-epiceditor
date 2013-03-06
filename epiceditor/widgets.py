@@ -57,11 +57,12 @@ class EpicEditorWidget(forms.Textarea):
                     var editor = new EpicEditor(opts);
 
                     // get textarea and hide it
-                    $textarea = $('#%(id)s');
-                    $textarea.hide();
+                    %(textarea)s = $('#%(id)s');
+                    %(textarea)s.hide();
                     // then be sure to populate the textarea
                     editor.on('update', function (file) {
-                      $textarea.val(file.content);
+                      console.log("debug file.content : " + file.content)
+                      %(textarea)s.val(file.content);
                     });
 
                     // Everything is all setup, so load!
@@ -78,6 +79,7 @@ class EpicEditorWidget(forms.Textarea):
                 'attrs': flatatt(final_attrs),
                 'body': conditional_escape(force_unicode(value)),
                 'id': attrs['id'],
+                'textarea': "$textarea_" + attrs['id'].replace('-', '_'),
             }
         return mark_safe(html)
 
