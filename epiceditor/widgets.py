@@ -61,7 +61,6 @@ class EpicEditorWidget(forms.Textarea):
                     %(textarea)s.hide();
                     // then be sure to populate the textarea
                     editor.on('update', function (file) {
-                      console.log("debug file.content : " + file.content)
                       %(textarea)s.val(file.content);
                     });
 
