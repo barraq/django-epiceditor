@@ -31,6 +31,10 @@ class EpicEditorWidget(forms.Textarea):
             <div id="%(id)sepiceditor"></div>
             <textarea%(attrs)s>%(body)s</textarea>
             <script type="text/javascript">
+                var ee = {
+                    'jQuery': (typeof window.django != 'undefined') ? django.jQuery : jQuery.noConflict(true)
+                };
+
                 (function($) {
                   $(document).ready(function() {
                     var opts = {
@@ -67,7 +71,7 @@ class EpicEditorWidget(forms.Textarea):
                     // Everything is all setup, so load!
                     editor.load();
                   });
-                })(django.jQuery);
+                })(ee.jQuery);
             </script>
             """ % {
                 'basePath': (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor',
