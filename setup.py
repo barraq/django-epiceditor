@@ -15,7 +15,7 @@ def get_submodules_and_fix_paths():
         check_call(['git', 'submodule', 'init'])
         check_call(['git', 'submodule', 'update'])
         # Reset EpicEditor to tag 0.2.0
-        check_call(['cd', 'epiceditor/static/epiceditor', '&&', 'git', 'reset', '--hard', '0.2.1.1'])
+        check_call(['cd', 'epiceditor/static/epiceditor', '&&', 'git', 'reset', '--hard', '0.2.1.1'], shell=True)
         # Move contents of epiceditor and remove .git
         dst = "epiceditor/static/epiceditor/"
         src = "epiceditor/static/epiceditor/epiceditor/"
