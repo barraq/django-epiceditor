@@ -64,8 +64,8 @@ class EpicEditorWidget(forms.Textarea):
                     %(textarea)s = $('#%(id)s');
                     %(textarea)s.hide();
                     // then be sure to populate the textarea
-                    editor.on('update', function (file) {
-                      %(textarea)s.val(file.content);
+                    editor.on('update', function () {
+                      %(textarea)s.val(editor.exportFile());
                     });
 
                     // Everything is all setup, so load!
