@@ -1,0 +1,4 @@
+django-epiceditor (0.2.2) stable
+
+    * editor insert non-breaking space instead of space (#3)
+    * bug fix in setup.py
