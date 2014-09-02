@@ -3,7 +3,10 @@ from django.conf import settings
 from django.contrib.admin import widgets as admin_widgets
 from django.forms.widgets import flatatt
 from django.utils.html import conditional_escape, escapejs
-from django.utils.encoding import force_unicode
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    from django.utils.encoding import force_unicode as force_text
 from django.utils.safestring import mark_safe
 
 
@@ -75,12 +78,12 @@ class EpicEditorWidget(forms.Textarea):
             </script>
             """ % {
                 'basePath': (settings.STATIC_URL or settings.MEDIA_URL) + 'epiceditor',
-                'defaultContent': escapejs(force_unicode(value)),
+                'defaultContent': escapejs(force_text(value)),
                 'theme_base': self.themes['base'],
                 'theme_preview': self.themes['preview'],
                 'theme_editor': self.themes['editor'],
                 'attrs': flatatt(final_attrs),
-                'body': conditional_escape(force_unicode(value)),
+                'body': conditional_escape(force_text(value)),
                 'id': attrs['id'],
                 'textarea': "$textarea_" + attrs['id'].replace('-', '_'),
             }
