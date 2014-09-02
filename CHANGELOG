@@ -1,4 +1,25 @@
-django-epiceditor (0.2.2) stable
+v0.2.3 (2014-09-02)
+
+    * add support for Python3 (#7)
+    * add .gitattributes to prevent mess in case people don't have core.autocrlf set
+
+v0.2.2 (2013-11-09)
 
     * editor insert non-breaking space instead of space (#3)
     * bug fix in setup.py
+
+v0.2.1.2 (2013-02-25)
+  
+    * Fixing issues with MANIFEST
+
+v0.2.1.1 (2013-02-24)
+    
+    * Using EpicEditor v0.2.0
+    
+v0.2.1 (2013-02-22)
+
+    * Adding themes support and bugs fix
+
+v0.2.0 (2013-02-21)
+
+    * Initial release
